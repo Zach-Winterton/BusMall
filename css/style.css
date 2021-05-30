@@ -1,0 +1,72 @@
+body {
+  background-color: burlywood;
+}
+
+header {
+  background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQfi0os-W222riOr0KJg-VMdro4XhyJanD5g&usqp=CAU);
+  padding: 20px 50px 20px 50px;
+  width: 1070px;
+  position: relative; left: 1970px;
+}
+
+h1 {
+  font-size: 90px;
+  text-align: center;
+  font-family: 'Pattaya', sans-serif; 
+  margin-top: 40px;
+  position: relative; top: 70px;
+}
+
+h3 {
+  font-size: 40px;
+  text-align: center;
+  margin-top: 60px;
+}
+section {
+  background-color: darkolivegreen;
+  width: max-content;
+  margin: auto;
+  margin-top: 40px;
+  border-color: black;
+  border-style: solid;
+  border-width: 10px;
+}
+
+section img {
+width: 300px;
+height: 300px;
+margin: 100px;
+}
+
+main div {
+  background-color:peru;
+  width: max-content;
+  padding: 15px;
+  margin: auto; 
+  margin-top: 40px;
+  font-size: 40px;
+  font-family: 'Crimson Pro', serif;
+  border-radius: 15px;
+}
+
+main div:hover,section img:hover {
+  cursor: pointer;
+}
+
+ul {
+  background-color: powderblue;
+  width: max-content;
+  font-size: 35px;
+  font-weight: bolder;
+  position: relative; left: 300px;
+  border-color:lightcoral;
+  border-style: solid;
+  border-width: 10px;
+}
+
+li {
+  margin-top: 25px;
+  background-color: seashell;
+  letter-spacing: 5px;
+  text-align: center;
+}
