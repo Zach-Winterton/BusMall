@@ -14,7 +14,7 @@ let imageThree = document.querySelector('section img:last-child');
 
 function merch(name, fileExtension = 'jpg') {
   this.name = name;
-  this.src = `img/${name}.${fileExtension}`;
+  this.src = `assets/${name}.${fileExtension}`;
   this.clicks = 0;
   this.views = 0;
   allMerch.push(this);
@@ -88,7 +88,7 @@ function handleSurveyClick(event) {
   }
   renderRandomMerch();
 
-  if (clicks === clicksAllowed){
+  if (clicks === clicksAllowed) {
     container.removeEventListener('click', handleSurveyClick);
   }
 }
