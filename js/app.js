@@ -10,6 +10,7 @@ let imageOne = document.querySelector('section img:first-child');
 let imageTwo = document.querySelector('section img:nth-child(2)');
 let imageThree = document.querySelector('section img:last-child');
 
+let images = [];
 
 
 function merch(name, fileExtension = 'jpg') {
@@ -45,31 +46,42 @@ function selectRandomMerchIndex() {
 }
 
 function renderRandomMerch() {
-  let itemOne = selectRandomMerchIndex();
-  let itemTwo = selectRandomMerchIndex();
-  let itemThree = selectRandomMerchIndex();
 
-  while (itemOne === itemTwo || itemThree === itemTwo) 
-    itemTwo = selectRandomMerchIndex();
-  
-  while (itemThree === itemOne || itemTwo === itemOne) 
-      itemOne = selectRandomMerchIndex();
-  
-  while (itemTwo === itemThree || itemOne === itemThree) 
-        itemThree = selectRandomMerchIndex();
-  
+  while (images.length < 6) {
+    let uniqueIndex = selectRandomMerchIndex();
+    if (!images.includes(uniqueIndex)) {
+      images.unshift(uniqueIndex);
+    }
+  }
+  console.log(images);
+  let itemOne = images.pop();
+  let itemTwo = images.pop();
+  let itemThree = images.pop();
 
+  //let itemOne = selectRandomMerchIndex();
+  //let itemTwo = selectRandomMerchIndex();
+  //let itemThree = selectRandomMerchIndex();
+
+ // while (itemOne === itemTwo) (itemTwo === itemThree) || (itemThree === itemOne);
+  //{
+   // itemTwo = selectRandomMerchIndex();
+   // itemThree = selectRandomMerchIndex();
+  //}
+  
+  
   imageOne.src = allMerch[itemOne].src;
   imageOne.alt = allMerch[itemOne].name;
   allMerch[itemOne].views++;
-
+  
   imageTwo.src = allMerch[itemTwo].src;
   imageTwo.alt = allMerch[itemTwo].name;
   allMerch[itemTwo].views++;
-
+  
   imageThree.src = allMerch[itemThree].src;
   imageThree.alt = allMerch[itemThree].name;
   allMerch[itemThree].views++;
+
+
 }
 
 renderRandomMerch();
@@ -78,7 +90,7 @@ function handleSurveyClick(event) {
   if (event.target === container) {
     alert('Please select one of the listed MERCHANDISE');
   }
-
+  
   clicks++;
   let clickedItem = event.target.alt;
   for (let i = 0; i < allMerch.length; i++){
@@ -87,9 +99,10 @@ function handleSurveyClick(event) {
     }
   }
   renderRandomMerch();
-
+  
   if (clicks === clicksAllowed) {
     container.removeEventListener('click', handleSurveyClick);
+    jsChart();
   }
 }
 
@@ -101,13 +114,62 @@ function renderResults(){
     ul.appendChild(li);
   }
 }
+function jsChart() {
+  let productName = [];
+  let voteTotals = [];
+  let clickTotals = [];
+  
+  for (let i = 0; i < allMerch.length; i++) {
+    productName.push(allMerch[i].name);
+    voteTotals.push(allMerch[i].views);
+    clickTotals.push(allMerch[i].clicks);
+  }
+  
+  let ctx = document.getElementById('myChart').getContext('2d');
+  let chartJs = {
+    type: 'bar',
+    data: {
+      labels: productName,
+      datasets: [{
+        label: 'Click Totals',
+        data: clickTotals,
+        backgroundColor: 'rgba(255, 159, 64, 0.2)',
+        borderColor: 'rgba(255, 159, 64, 1)',
+        borderWidth: 1,
+      },
+      {
+        label: 'Vote Totals',
+        data: voteTotals,
+        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+        borderColor: 'rgba(54, 162, 235, 1)',
+        borderWidth: 1,
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  };
+  new Chart(ctx, chartJs);
+}
 
 function handleResultsClick(event) {
   if (clicks === clicksAllowed){
     renderResults();
   }
+  results.removeEventListener('click', handleResultsClick);
+//results.addEventListener('click', handleResultsClick);
+//renderRandomMerch();
 }
-renderRandomMerch();
-
 container.addEventListener('click', handleSurveyClick);
-results.addEventListener('click', handleResultsClick);
+
+//itemTwo = selectRandomMerchIndex();
+
+//while (itemThree === itemOne || itemTwo === itemOne) 
+  //itemOne = selectRandomMerchIndex();
+
+//while (itemTwo === itemThree || itemOne === itemThree) 
+    //itemThree = selectRandomMerchIndex();
