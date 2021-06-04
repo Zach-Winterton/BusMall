@@ -48,12 +48,12 @@ function selectRandomMerchIndex() {
 function renderRandomMerch() {
 
   while (images.length < 6) {
-    let uniqueIndex = selectRandomMerchIndex();
-    if (!images.includes(uniqueIndex)) {
-      images.unshift(uniqueIndex);
+    let index = selectRandomMerchIndex();
+    if (!images.includes(index)) {
+      images.unshift(index);
     }
   }
-  console.log(images);
+  //console.log(images);
   let itemOne = images.pop();
   let itemTwo = images.pop();
   let itemThree = images.pop();
@@ -133,16 +133,23 @@ function jsChart() {
       datasets: [{
         label: 'Click Totals',
         data: clickTotals,
-        backgroundColor: 'rgba(255, 159, 64, 0.2)',
+        backgroundColor: 'rgba(255,140,0)',
         borderColor: 'rgba(255, 159, 64, 1)',
         borderWidth: 1,
+        fontSize: 40,
+        fontStyle: "bold",
+        padding: 15,
+        fontColor: 'rgba(0,0,0)',
       },
       {
         label: 'Vote Totals',
         data: voteTotals,
-        backgroundColor: 'rgba(54, 162, 235, 0.2)',
-        borderColor: 'rgba(54, 162, 235, 1)',
+        backgroundColor: 'rgba(0,128,128)',
+        borderColor: 'rgba(0,128,128)',
         borderWidth: 1,
+        fontSize: 40, 
+        fontStyle: "bold",
+        padding: 15,
       }]
     },
     options: {
@@ -156,20 +163,21 @@ function jsChart() {
   new Chart(ctx, chartJs);
 }
 
-function handleResultsClick(event) {
-  if (clicks === clicksAllowed){
-    renderResults();
-  }
-  results.removeEventListener('click', handleResultsClick);
-//results.addEventListener('click', handleResultsClick);
-//renderRandomMerch();
-}
 container.addEventListener('click', handleSurveyClick);
 
 //itemTwo = selectRandomMerchIndex();
 
 //while (itemThree === itemOne || itemTwo === itemOne) 
-  //itemOne = selectRandomMerchIndex();
+//itemOne = selectRandomMerchIndex();
 
 //while (itemTwo === itemThree || itemOne === itemThree) 
-    //itemThree = selectRandomMerchIndex();
+//itemThree = selectRandomMerchIndex();
+
+//function handleResultsClick(event) {
+  //if (clicks === clicksAllowed){
+   // renderResults();
+  //}
+ // results.removeEventListener('click', handleResultsClick);
+//results.addEventListener('click', handleResultsClick);
+//renderRandomMerch();
+//}
