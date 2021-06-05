@@ -3,6 +3,7 @@
 let allMerch = [];
 let clicks = 0;
 let clicksAllowed = 25;
+let images = [];
 
 let container = document.querySelector('section');
 let results = document.querySelector('div');
@@ -10,7 +11,6 @@ let imageOne = document.querySelector('section img:first-child');
 let imageTwo = document.querySelector('section img:nth-child(2)');
 let imageThree = document.querySelector('section img:last-child');
 
-let images = [];
 
 
 function merch(name, fileExtension = 'jpg') {
@@ -21,6 +21,13 @@ function merch(name, fileExtension = 'jpg') {
   allMerch.push(this);
 }
 
+let getMerch = localStorage.getItem('merch');
+
+if (getMerch) {
+  let parsedMerch = JSON.parse(getMerch);
+  allMerch = parsedMerch;
+} 
+else {
 new merch('bag');
 new merch('banana');
 new merch('bathroom');
@@ -40,6 +47,7 @@ new merch('unicorn');
 new merch('water-can');
 new merch('wine-glass');
 new merch('sweep', 'png');
+}
 
 function selectRandomMerchIndex() {
   return Math.floor(Math.random() * allMerch.length);
@@ -50,23 +58,14 @@ function renderRandomMerch() {
   while (images.length < 6) {
     let index = selectRandomMerchIndex();
     if (!images.includes(index)) {
-      images.unshift(index);
+      images.push(index);
     }
   }
-  //console.log(images);
-  let itemOne = images.pop();
-  let itemTwo = images.pop();
-  let itemThree = images.pop();
+  
+  let itemOne = images.shift();
+  let itemTwo = images.shift();
+  let itemThree = images.shift();
 
-  //let itemOne = selectRandomMerchIndex();
-  //let itemTwo = selectRandomMerchIndex();
-  //let itemThree = selectRandomMerchIndex();
-
- // while (itemOne === itemTwo) (itemTwo === itemThree) || (itemThree === itemOne);
-  //{
-   // itemTwo = selectRandomMerchIndex();
-   // itemThree = selectRandomMerchIndex();
-  //}
   
   
   imageOne.src = allMerch[itemOne].src;
@@ -80,8 +79,8 @@ function renderRandomMerch() {
   imageThree.src = allMerch[itemThree].src;
   imageThree.alt = allMerch[itemThree].name;
   allMerch[itemThree].views++;
-
-
+  
+  
 }
 
 renderRandomMerch();
@@ -165,6 +164,15 @@ function jsChart() {
 
 container.addEventListener('click', handleSurveyClick);
 
+//let itemOne = selectRandomMerchIndex();
+//let itemTwo = selectRandomMerchIndex();
+//let itemThree = selectRandomMerchIndex();
+
+// while (itemOne === itemTwo) (itemTwo === itemThree) || (itemThree === itemOne);
+//{
+ // itemTwo = selectRandomMerchIndex();
+ // itemThree = selectRandomMerchIndex();
+//}
 //itemTwo = selectRandomMerchIndex();
 
 //while (itemThree === itemOne || itemTwo === itemOne) 
@@ -176,8 +184,9 @@ container.addEventListener('click', handleSurveyClick);
 //function handleResultsClick(event) {
   //if (clicks === clicksAllowed){
    // renderResults();
-  //}
- // results.removeEventListener('click', handleResultsClick);
-//results.addEventListener('click', handleResultsClick);
-//renderRandomMerch();
-//}
+   //}
+   // results.removeEventListener('click', handleResultsClick);
+   //results.addEventListener('click', handleResultsClick);
+   //renderRandomMerch();
+   //}
+   
