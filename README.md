@@ -7,7 +7,7 @@ I am building this app for a buss catalog company. Its kind of like "Sky Mall" b
 ### Author: Zach Winterton
 
 ### chart js
-[!](https://data.jsdelivr.com/v1/package/npm/chart.js/badge)](https://www.jsdelivr.com/package/npm/chart.js)
+[!][(https://data.jsdelivr.com/v1/package/npm/chart.js/badge)](https://www.jsdelivr.com/package/npm/chart.js)
 
 
 ### Links and Resources
