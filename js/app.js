@@ -26,8 +26,8 @@ let getMerch = localStorage.getItem('merch');
 if (getMerch) {
   let parsedMerch = JSON.parse(getMerch);
   allMerch = parsedMerch;
-} 
-else {
+} else {
+
 new merch('bag');
 new merch('banana');
 new merch('bathroom');
@@ -102,17 +102,11 @@ function handleSurveyClick(event) {
   if (clicks === clicksAllowed) {
     container.removeEventListener('click', handleSurveyClick);
     jsChart();
+    let stringAllMerch = JSON.stringify(allMerch);
+    localStorage.setItem('merch', stringAllMerch);
   }
 }
 
-function renderResults(){
-  let ul = document.querySelector('ul');
-  for (let i = 0; i < allMerch.length; i++){
-    let li = document.createElement('li');
-    li.textContent = `${allMerch[i].name} had ${allMerch[i].views} views and was clicked ${allMerch[i].clicks} times.`;
-    ul.appendChild(li);
-  }
-}
 function jsChart() {
   let productName = [];
   let voteTotals = [];
@@ -170,23 +164,31 @@ container.addEventListener('click', handleSurveyClick);
 
 // while (itemOne === itemTwo) (itemTwo === itemThree) || (itemThree === itemOne);
 //{
- // itemTwo = selectRandomMerchIndex();
- // itemThree = selectRandomMerchIndex();
-//}
-//itemTwo = selectRandomMerchIndex();
-
-//while (itemThree === itemOne || itemTwo === itemOne) 
-//itemOne = selectRandomMerchIndex();
-
-//while (itemTwo === itemThree || itemOne === itemThree) 
-//itemThree = selectRandomMerchIndex();
-
-//function handleResultsClick(event) {
-  //if (clicks === clicksAllowed){
-   // renderResults();
-   //}
-   // results.removeEventListener('click', handleResultsClick);
+  // itemTwo = selectRandomMerchIndex();
+  // itemThree = selectRandomMerchIndex();
+  //}
+  //itemTwo = selectRandomMerchIndex();
+  
+  //while (itemThree === itemOne || itemTwo === itemOne) 
+  //itemOne = selectRandomMerchIndex();
+  
+  //while (itemTwo === itemThree || itemOne === itemThree) 
+  //itemThree = selectRandomMerchIndex();
+  
+  //function handleResultsClick(event) {
+    //if (clicks === clicksAllowed){
+      // renderResults();
+      //}
+      // results.removeEventListener('click', handleResultsClick);
    //results.addEventListener('click', handleResultsClick);
    //renderRandomMerch();
    //}
    
+   //function renderResults(){
+    // let ul = document.querySelector('ul');
+    // for (let i = 0; i < allMerch.length; i++){
+       //let li = document.createElement('li');
+       //li.textContent = `${allMerch[i].name} had ${allMerch[i].views} views and was clicked ${allMerch[i].clicks} times.`;
+       //ul.appendChild(li);
+     //}
+   //}
